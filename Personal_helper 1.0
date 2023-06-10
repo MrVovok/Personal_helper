@@ -1,0 +1,199 @@
+import datetime
+import winsound
+import time
+import random
+word = "-|Programs by Vovok|-"
+cc = ""
+for i in word:
+    cc += i
+    time.sleep(0.05)
+    print(cc, end="\r")
+print(cc)
+print("=" * 50)
+print("|Памятка:\n|-дата/время (дт)"
+      "\n|-счетчик слов тексте (ст)"
+      "\n|-переводчик валют (пв)"
+      "\n|-калькулятор (кл)"
+      "\n|-будильник (бд)"
+      "\n|-счетчик длин слов (сд)"
+      "\n|-калькулятор самогонщика (кс)"
+      "\n|-преобразователь больших чисел с пробелами (пч)"
+      "\n|-поиск делителя числа (пч)"
+      "\n|-рандомайзер чисел (рч)"
+      "\n|-рандомайзер (рд)")
+print("=" * 50)
+print("|для остановки программы введите 'стоп'")
+print("=" * 40)
+program = input("Ввод: ")
+while program != "стоп":
+    if program == "дт": #--------------------------------------------------------------------------------------------->1
+        print("дата/время на данный момент:", datetime.datetime.now())
+    elif program == "бд": #------------------------------------------------------------------------------------------->2
+        print("введите время для звона будильника:")
+        hrs = int(input("часов- "))
+        mins = int(input("минут- "))
+        sec = int(input("секунд- "))
+        dmy = int(input("число дня звона- "))
+        bd = int(input("время проигрывания мелодии (сек)- "))
+        timeobj = datetime.datetime(2023, 6, dmy, hrs, mins, sec)
+        print("-" * 20)
+        print("время пошло")
+        while 1:
+            current_date_time = datetime.datetime.now()
+            if current_date_time > timeobj:
+                print("-" * 20)
+                print("время вышло!")
+                qq = 0
+                while qq != bd:
+                    qq += 1
+                    time.sleep(1)
+                    winsound.Beep(700, 300)
+                    winsound.Beep(700, 300)
+                break
+    elif program == "ст": #------------------------------------------------------------------------------------------->3
+        print("для остановки счетчика введите- 'стоп'")
+        word = input("введите текст: ")
+        while word != "стоп":
+            cc = 0
+            for i in word:
+                if i == " ":
+                    cc += 1
+            print("слов в тексте-", cc + 1)
+            print("-" * 20)
+            word = input("введите текст: ")
+    elif program == "кл": #------------------------------------------------------------------------------------------->4
+        print("для остановки введите 'стоп'")
+        calc = input('введите пример- ')
+        while calc != "стоп":
+            answer = eval(calc)
+            print("Ответ:", answer)
+            print("-" * 20)
+            calc = input('введите пример- ')
+    elif program == "пв": #------------------------------------------------------------------------------------------->5
+        print("для остановки введите 'стоп'")
+        mera = input("Ввод в рублях: ")
+        while mera != "стоп":
+            mera = float(mera)
+            if mera < 0:
+                print("серьёзно?", mera, "рублей?")
+            else:
+                print("долларов:", mera / 79.9)
+                print("евро:", mera / 86.28)
+                print("тенге:", mera / 0.1779)
+                print("фунтов: ", mera / 99.16)
+            print("-" * 20)
+            mera = input("Ввод в рублях: ")
+    elif program == "сд": #------------------------------------------------------------------------------------------->6
+        print("для остановки введите 'стоп'")
+        while 1:
+            txt = input("введите предложение: ")
+            if txt == "стоп":
+                break
+            txt = txt.split()
+            tt = []
+            for i in txt:
+                tt.append(len(i))
+            mx = max(tt)
+            mn = min(tt)
+            tt2 = []
+            for i in tt:
+                a = int(i)
+                tt2.append(a)
+            cp = sum(tt2) / len(tt2)
+            print("Длина самого короткого слова:", mn)
+            print("Длина самого длинного слова:", mx)
+            print("Среднее значение длины слов:", cp)
+            print("-" * 20)
+    elif program == "кс": #------------------------------------------------------------------------------------------->7
+        krepost = float(input("введите крепость самогона- "))
+        jelkrep = float(input("введите желаемую крепость напитка- "))
+        kolvo = float(input("введите объем самогона в литрах- "))
+        result = (krepost / jelkrep - 1) * kolvo
+        print("добавьте", result, "литров воды")
+        print("итого кол-во напитка-", kolvo + result)
+    elif program == "пч": #------------------------------------------------------------------------------------------->8
+        print("для остановки введите 'стоп'")
+        numb = input("введите число- ")
+        while 1:
+            if numb == "стоп":
+                break
+            cc = ""
+            g = "_"
+            for i in numb[::-1]:
+                if len(cc) == 3 or len(cc) == 7 or len(cc) == 11 or len(cc) == 15:
+                    cc += g
+                cc += i
+            cc2 = cc[::-1]
+            print(">>>", cc2)
+            print("-" * 20)
+            numb = input("введите число- ")
+    elif program == "пд":#-------------------------------------------------------------------------------------------->9
+        print("для остановки введите 'стоп'")
+        numk = input("введите число- ")
+        while numk != "стоп":
+            num = int(numk)
+            if num <= 0:
+                print("число должно быть больше нуля")
+            elif num == 1:
+                print("у числа 1 только один делитель, угадай какой")
+            else:
+                cc = ""
+                g = ", "
+                counter = 0
+                for i in range(num):
+                    for j in range(num):
+                        if i * j == num:
+                            counter += 1
+                            i = str(i)
+                            cc += i
+                            cc += g
+                if cc == "":
+                    print("у числа", numk, "нет делителя, кроме", numk, "и", 1)
+                else:
+                    print("делители числа", num, ">>>", cc[:-2])
+                    print("количество делителей >>>", counter)
+            print("-" * 20)
+            numk = input("введите число- ")
+    elif program == "рч": #------------------------------------------------------------------------------------------>10
+        print("для остановки введите 'стоп'")
+        print("введите границы числогого поиска:")
+        ot = input("от: ")
+        while ot != "стоп":
+            do = input("до: ")
+            if do == "стоп":
+                break
+            ot = int(ot)
+            do = int(do)
+            a = random.randint(ot, do)
+            print(">>>", a)
+            print("-" * 20)
+            ot = input("от: ")
+            #do = input("до: ")
+    elif program == "рд": #------------------------------------------------------------------------------------------>11
+        print("для остановки введите 'стоп'")
+        print("для окончания ввода введите 'все'")
+        print("введите то, что нужно рандомнуть:")
+        while 1:
+            wordee_tt = []
+            err = "F"
+            while 1:
+                wordee = input(">>> ")
+                if wordee == "все":
+                    if len(wordee_tt) == 0:
+                        print("-!ошибка!-")
+                        continue
+                    break
+                elif wordee == "стоп":
+                    err = "T"
+                    break
+                wordee_tt.append(wordee)
+            if err == "T":
+                break
+            rande = random.randint(0, len(wordee_tt) - 1)
+            exit = wordee_tt[rande]
+            print("рандомный вывод-", exit)
+            print("-" * 40)
+    else: #========================================================================================================>stop
+        print("!->ошибка<-!")
+    print("=" * 40)
+    program = input("Ввод: ")
